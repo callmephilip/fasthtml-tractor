@@ -1,6 +1,8 @@
 # "Why did the database administrator buy a tractor? Because he needed to manage large fields!" - gpt o1
 
 import sqlite3
+import os
+from pathlib import Path
 from typing import List, Dict, Optional, Literal
 from fasthtml.common import *
 
@@ -70,13 +72,13 @@ def connect_tractor(app: FastHTML, connection: sqlite3.Connection, limit: int = 
             Head(
                 Title("Tractor Devtools"),
                 Script(src="https://unpkg.com/htmx.org@next/dist/htmx.min.js"),
-                Script(src="/preline.min.js"),
+                Script(src="/__tractor__/public/preline.min.js"),
                 Link(rel="preconnect", href="https://fonts.googleapis.com"),
                 Link(
                     rel="stylesheet",
                     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap",
                 ),
-                Link(rel="stylesheet", href="/main.min.css?v=1.0.0"),
+                Link(rel="stylesheet", href="/__tractor__/public/main.min.css"),
             ),
             Body(cls="h-screen", *args)
         )
@@ -231,5 +233,8 @@ def connect_tractor(app: FastHTML, connection: sqlite3.Connection, limit: int = 
                 )   for k, v in row.attributes.items()
             ],
         ) if row is not None else None
+    
+    @rt("/__tractor__/public/{fname:path}.{ext:static}")
+    async def get(fname: str, ext: str): return FileResponse(f"{Path(os.path.realpath(__file__)).parent.parent}/public/{fname}.{ext}")
 
     return app
