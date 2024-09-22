@@ -1,3 +1,4 @@
+# ping
 # "Why did the database administrator buy a tractor? Because he needed to manage large fields!" - gpt o1
 
 import sqlite3
