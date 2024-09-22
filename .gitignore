@@ -1,6 +1,6 @@
 .sesskey
-*.db-*
-*.db
+data/*.db-*
+data/*.db
 .gitattributes
 _proc/
 _quarto.yml
