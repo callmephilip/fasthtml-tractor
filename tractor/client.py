@@ -1,4 +1,3 @@
-# ping
 # "Why did the database administrator buy a tractor? Because he needed to manage large fields!" - gpt o1
 
 import sqlite3
@@ -66,7 +65,8 @@ class Tractor:
 def connect_tractor(app: FastHTML, connection: sqlite3.Connection, limit: int = 100) -> FastHTML:
     rt = app.route
     tractor = Tractor.from_sqlite3(connection)
-    with open("tractor.js", "r") as f: app.hdrs = listify(app.hdrs) + [Script(code=f.read())]
+
+    app.hdrs = listify(app.hdrs) + [Script(src="/__tractor__/public/tractor.js")]
 
     def layout(*args):
         return Html(
@@ -74,6 +74,7 @@ def connect_tractor(app: FastHTML, connection: sqlite3.Connection, limit: int = 
                 Title("Tractor Devtools"),
                 Script(src="https://unpkg.com/htmx.org@next/dist/htmx.min.js"),
                 Script(src="/__tractor__/public/preline.min.js"),
+                Script(src="/__tractor__/public/tractor.js"),
                 Link(rel="preconnect", href="https://fonts.googleapis.com"),
                 Link(
                     rel="stylesheet",
@@ -236,6 +237,6 @@ def connect_tractor(app: FastHTML, connection: sqlite3.Connection, limit: int = 
         ) if row is not None else None
     
     @rt("/__tractor__/public/{fname:path}.{ext:static}")
-    async def get(fname: str, ext: str): return FileResponse(f"{Path(os.path.realpath(__file__)).parent.parent}/public/{fname}.{ext}")
+    async def get(fname: str, ext: str): return FileResponse(f"{Path(os.path.realpath(__file__)).parent}/{fname}.{ext}")
 
     return app

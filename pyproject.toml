@@ -6,10 +6,6 @@ authors = ["Philip Nuzhnyi <philip.nuzhnyy@gmail.com>"]
 license = "MIT"
 readme = "README.md"
 packages = [{ include = "tractor" }]
-include = [
-    { path = "public/*", format = ["sdist", "wheel"] },
-    { path = "tractor.js", format = ["sdist", "wheel"] }
-]
 repository = "https://github.com/callmephilip/fasthtml-tractor"
 
 [tool.poetry.dependencies]
