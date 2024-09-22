@@ -1,9 +1,12 @@
 [tool.poetry]
 name = "fasthtml-tractor"
 version = "0.1.0a1"
-description = ""
+description = "sqlite3 db viewer for FastHTML projects"
 authors = ["Philip Nuzhnyi <philip.nuzhnyy@gmail.com>"]
+license = "MIT"
 readme = "README.md"
+packages = [{ include = "tractor" }]
+repository = "https://github.com/callmephilip/fasthtml-tractor"
 
 [tool.poetry.dependencies]
 python = "^3.10"
