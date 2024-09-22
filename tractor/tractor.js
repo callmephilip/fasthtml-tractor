@@ -19,7 +19,7 @@
     >
       🚜<span id="tractor-on-indicator" style="display:none;">💨</span>
     </button>
-    <div id="${devtoolsPanelId}" style="border-top: solid 1px #ccc;display:none; position:absolute;left: 0;right:0;bottom:0;">
+    <div id="${devtoolsPanelId}" style="z-index: 88888; background-color: white; border-top: solid 1px #ccc;display:none; position:absolute;left: 0;right:0;bottom:0;">
         <iframe style="width:100%; height: 800px;" frameBorder="0" src="${tractorUrl}" title="Tractor Devtools"></iframe>
     </div>
     `;
