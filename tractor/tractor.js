@@ -26,7 +26,7 @@
     document.body.insertAdjacentHTML("beforeend", b);
   });
 })(
-  window.location.href + "__tractor__",
+  window.location.protocol + "//" + window.location.host + "/__tractor__",
   "__tractor__",
   "tractor-devtools-panel"
 );
